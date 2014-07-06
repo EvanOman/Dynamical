@@ -162,6 +162,7 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 #Creates a 2 dimensional PHASE image of a singular perturbation of the complex quadratic map
 ##z = z**n1 + c2 + (beta)/(z.conjugate()**d)
 def singPertPhase(n1,d,beta,c2,n, m, itermax, xmin, xmax, ymin, ymax,filename,colorMap):
+
 	start = time.time()
 
 	ix, iy = mgrid[0:n, 0:m]
@@ -205,7 +206,6 @@ def singPertPhase(n1,d,beta,c2,n, m, itermax, xmin, xmax, ymin, ymax,filename,co
 
 	image = imshow(img.T, origin='lower left')
 	image.set_cmap(colorMap)
-	return image
 	image.write_png(filename+'.png', noscale=True)
 
 
@@ -282,10 +282,20 @@ def makeImage(imgType, xSize, ySize, xMin, xMax, yMin, yMax, itermax, n, d, beta
 	#Now we call the appropriate function based on the user input
 	if imgType == "param":
 		singPertParam(n, d, beta, angle, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
+		figureText = "\\begin{figure}[H]\\centering\\includegraphics[width=.6\\textwidth]{{"+ filename + "}.png}\
+\\caption{Parameter space image for param $c$ with the equation $z^{" + str(n) + "} + \\frac{"\
+ + str(beta) + "}{ \overline{z}^{" + str(d) + "}}$}\\end{figure}"
 	elif imgType == "phase":
 		singPertPhase(n, d, beta, c, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
+		figureText = "\\begin{figure}[H]\\centering\\includegraphics[width=.6\\textwidth]{{"+ filename + "}.png}\
+\\caption{Phase space image of $z^{" + str(n) + "} + " + str(c) + " + \\frac{" + str(beta) + "}{ \overline{z}^{" + str(d) + "}}$}\\end{figure}"
 	else:
-		print("Not a valid image type, doing nothing")
+		figureText = "Not a valid image type, doing nothing"
+		print(figureText)
+
+	#Now we will write the text to a file for latex processing
+	with open("imageTexts.txt", "a") as myfile:
+		myfile.write("\n" + figureText + "\n")
 
 
 #Would be nice to have a single function to call in which I can specify what image I want to create(param or phase), which parameter to vary over(might cover the first item, changing varying over c rather than z is the difference between phase and parameter pictures), and maybe even which function to use to iterate. 
