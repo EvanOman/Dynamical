@@ -125,7 +125,11 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 	c.shape = n*m
 	
 	#Sets all of the z_0 values
-	z = critPoint**n1 + copy(c) + (beta)/(critPoint.conjugate()**d)
+	if critPoint == 0:
+		z = critPoint**n1 + copy(c)
+	else:
+		z = critPoint**n1 + copy(c) + (beta)/(critPoint.conjugate()**d)
+
 
 	for i in xrange(itermax):
 		if not len(z): break # all points have escaped
@@ -152,7 +156,7 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 	image = imshow(img.T, origin='lower left')
 	if not colorMap == "":
 		image.set_cmap(colorMap)
-	image.write_png(filename+'.png', noscale=True)
+		image.write_png(filename+'.png', noscale=True)
 
 
 #Creates a 2 dimensional PHASE image of a singular perturbation of the complex quadratic map
@@ -205,60 +209,6 @@ def singPertPhase(n1,d,beta,c2,n, m, itermax, xmin, xmax, ymin, ymax,filename,co
 	image.write_png(filename+'.png', noscale=True)
 
 
-#Creates a 2 dimensional phase image of a singular perturbation of the complex quadratic map
-#Formula: z**n1 + c + (beta)/(z.conjugate()**d)
-'''def singPertPhase(n1,d,beta,c,n, m, itermax, xmin, xmax, ymin, ymax,filename,colorMap):
-	start = time.time()
-
-	#First we need to calculate the critical point that we are going to iterate on:
-	r = ((d/n1)*abs(beta))**(1/(n1+d))
-
-	#The set of critical points is a circle with the radius given by above, for now we will take the right-most real value on this circle:
-	critPoint = r 
-	print r
-	ix, iy = mgrid[0:n, 0:m]
-	
-	x = linspace(xmin, xmax, n)[ix]
-	y = linspace(ymin, ymax, m)[iy]
-	
-	#We are creating a phase space image so we need to have z be the term that varies
-	z = x+complex(0,1)*y
-	del x, y # save a bit of memory, we only need z
-	
-	img = zeros(z.shape, dtype=int)
-	
-	ix.shape = n*m
-	iy.shape = n*m
-	z.shape = n*m
-	
-	#z = (copy(c) + r)**n1 + c + (beta)/(z.conjugate()**d)
-	for i in xrange(itermax):
-		if not len(z): break # all points have escaped
-		
-		#multiply(z, z, z)
-		#add(z, c, z)
-
-		z = z**n1 + c + (beta)/(z.conjugate()**d)
-
-		# these are the points that have escaped
-		rem = abs(z)>2.0
-		
-		img[ix[rem], iy[rem]] = i+1
-		
-		rem = -rem
-		
-		z = z[rem]
-		ix, iy = ix[rem], iy[rem]
-		#c = c[rem]
-	print 'Time taken:', time.time()-start
-
-	img[img==0] = 101
-	
-	image = imshow(img.T, origin='lower left')
-	if not colorMap == "":
-		image.set_cmap(colorMap)	
-	image.write_png(filename+'.png', noscale=True)'''
-    
 def burningShip(n, m, itermax, xmin, xmax, ymin, ymax,filename):
 
 	start = time.time()
@@ -307,6 +257,36 @@ def burningShip(n, m, itermax, xmin, xmax, ymin, ymax,filename):
 	img[img==0] = 101
 	image = imshow(img.T, origin='lower left')
 	image.write_png(filename+'.png', noscale=True)
+
+"""
+	Creates an image of the specified type, size, and parameters
+
+	@param imgType-     Type of the image to be created. Two options for now:
+	                         1. "param": creates a parameter space image(for now just on the c value)
+	                         2. "phase": creates a phase space image(for now just on the c value)
+	@param xSize-       number of x pixels
+	@param ySize-       number of y pixels
+	@param xMin/xMax-   min/max x values to check
+	@param yMin/yMax-   min/max y values to check
+	@param itermax-     max number of iterations to try
+	@param n/d/beta/c-  the values of the paramer to be used in the function: z = z**n + c + (beta)/(z.conjugate()**d)
+	@param angle-       the angle of the value along the crtical unit circle to use
+	@param colorMap     the color map with which to render the image (optional)
+
+"""
+def makeImage(imgType, xSize, ySize, xMin, xMax, yMin, yMax, itermax, n, d, beta, c, angle, colorMap):
+
+	#First we will make a consistent file name for the output image:
+	filename = imgType + "--n=" + str(n) + "--d=" + str(d) + "--beta=" + str(beta) + "--angle=" + str(angle)
+
+	#Now we call the appropriate function based on the user input
+	if imgType == "param":
+		singPertParam(n, d, beta, angle, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
+	elif imgType == "phase":
+		singPertPhase(n, d, beta, c, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
+	else:
+		print("Not a valid image type, doing nothing")
+
 
 #Would be nice to have a single function to call in which I can specify what image I want to create(param or phase), which parameter to vary over(might cover the first item, changing varying over c rather than z is the difference between phase and parameter pictures), and maybe even which function to use to iterate. 
 
