@@ -4,7 +4,7 @@ def singpert(x, n, d, c, beta):
 	return x**n + c + beta/(x**d)
 
 def makeEncodings(n ,d, beta, minX, maxX, iterNum):
-	critR = beta**(1/(n + d))
+	critR = .17728
 	scaleIter = (float(maxX) - float(minX))/iterNum
 
 	for i in xrange(iterNum):
@@ -12,10 +12,11 @@ def makeEncodings(n ,d, beta, minX, maxX, iterNum):
 		codingStr = ""
 		myMap = lambda x: singpert(x, n, d, c, beta)
 		xVal = critR
-		for i in xrange(10):
+		for i in xrange(50):
 			if xVal > critR:
 				codingStr += " R "
-				continue
+				if xVal > 100:
+					continue
 			elif xVal == critR:
 				codingStr += " C "
 			elif xVal > 0 and xVal < critR:

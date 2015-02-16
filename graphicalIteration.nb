@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9647,        256]
-NotebookOptionsPosition[      9262,        238]
-NotebookOutlinePosition[      9599,        253]
-CellTagsIndexPosition[      9556,        250]
+NotebookDataLength[     10223,        274]
+NotebookOptionsPosition[      9728,        252]
+NotebookOutlinePosition[     10065,        267]
+CellTagsIndexPosition[     10022,        264]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -99,7 +99,8 @@ Cell[BoxData[
           RowBox[{"(", 
            RowBox[{"singpert", "[", 
             RowBox[{"#", ",", "c", ",", ".001"}], "]"}], ")"}], "&"}], ",", 
-         "1", ",", "n"}], "]"}], "]"}]}], ",", 
+         RowBox[{".001", "^", 
+          RowBox[{"(", ".25", ")"}]}], ",", "n"}], "]"}], "]"}]}], ",", 
      RowBox[{"PlotRange", "\[Rule]", 
       RowBox[{"zoom", "*", "10"}]}], ",", 
      RowBox[{"ImagePadding", "\[Rule]", 
@@ -137,32 +138,33 @@ Cell[BoxData[
    RowBox[{"SaveDefinitions", "\[Rule]", "True"}], ",", 
    RowBox[{"TrackedSymbols", "\[Rule]", "Manipulate"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.63310777457267*^9, 3.633107849931419*^9}, {
-  3.6331078811026697`*^9, 3.6331079331304703`*^9}, {3.6331079969495783`*^9, 
-  3.633108043865184*^9}, {3.63310807660212*^9, 3.633108077328754*^9}, {
-  3.633108207448886*^9, 3.6331082552762213`*^9}}],
+   3.6331078811026697`*^9, 3.6331079331304703`*^9}, {3.6331079969495783`*^9, 
+   3.633108043865184*^9}, {3.63310807660212*^9, 3.633108077328754*^9}, {
+   3.633108207448886*^9, 3.6331082552762213`*^9}, 3.633110246289796*^9, {
+   3.633110284563056*^9, 3.633110297027589*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`c$$ = 0.6, $CellContext`n$$ = 
-    5, $CellContext`zoom$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`c$$ = -0.026, $CellContext`n$$ = 
+    6, $CellContext`zoom$$ = 0.1, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`c$$], 0.6, "param"}, -1.3, 1.3, 0.01}, {{
        Hold[$CellContext`n$$], 5, "iterates"}, 1, 15, 1}, {{
        Hold[$CellContext`zoom$$], 1, "zoom"}, 0.5, 4, 0.01}}, 
-    Typeset`size$$ = {1073., {328., 334.}}, Typeset`update$$ = 0, 
+    Typeset`size$$ = {1026., {314., 318.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`c$20092$$ = 0, $CellContext`n$20093$$ = 
-    0, $CellContext`zoom$20094$$ = 0}, 
+    False, $CellContext`c$22052$$ = 0, $CellContext`n$22053$$ = 
+    0, $CellContext`zoom$22054$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`c$$ = 0.6, $CellContext`n$$ = 
         5, $CellContext`zoom$$ = 1}, "ControllerVariables" :> {
-        Hold[$CellContext`c$$, $CellContext`c$20092$$, 0], 
-        Hold[$CellContext`n$$, $CellContext`n$20093$$, 0], 
-        Hold[$CellContext`zoom$$, $CellContext`zoom$20094$$, 0]}, 
+        Hold[$CellContext`c$$, $CellContext`c$22052$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$22053$$, 0], 
+        Hold[$CellContext`zoom$$, $CellContext`zoom$22054$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -172,7 +174,7 @@ Cell[BoxData[
           0.001]}, {$CellContext`x, (-10) $CellContext`zoom$$, 
          10 $CellContext`zoom$$}, Epilog -> Arrow[
           $CellContext`itinerary[$CellContext`singpert[#, $CellContext`c$$, 
-            0.001]& , 1, $CellContext`n$$]], 
+            0.001]& , 0.001^0.25, $CellContext`n$$]], 
         PlotRange -> $CellContext`zoom$$ 10, 
         ImagePadding -> {{25, 10}, {10, 10}}], 
       "Specifications" :> {{{$CellContext`c$$, 0.6, "param"}, -1.3, 1.3, 0.01,
@@ -182,7 +184,7 @@ Cell[BoxData[
          Left}, {{$CellContext`zoom$$, 1, "zoom"}, 0.5, 4, 0.01, ImageSize -> 
          Small, ControlPlacement -> Left}}, 
       "Options" :> {TrackedSymbols -> Manipulate}, "DefaultOptions" :> {}],
-     ImageSizeCache->{1321., {358., 365.}},
+     ImageSizeCache->{1320., {343., 350.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -233,11 +235,23 @@ $CellContext`vert[{
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.633108025886758*^9, 3.633108044895615*^9}, 
-   3.633108078473815*^9, {3.633108220126412*^9, 3.6331082561992292`*^9}}]
+   3.633108078473815*^9, {3.633108220126412*^9, 3.6331082561992292`*^9}, 
+   3.633110299652906*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{".001", "^", 
+  RowBox[{"(", ".25", ")"}]}]], "Input",
+ CellChangeTimes->{{3.6331106131307*^9, 3.6331106272551317`*^9}}],
+
+Cell[BoxData["0.1778279410038923`"], "Output",
+ CellChangeTimes->{{3.633110618597287*^9, 3.633110628372611*^9}}]
 }, Open  ]]
 },
 WindowSize->{1855, 1056},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 FrontEndVersion->"10.0 for Linux x86 (64-bit) (December 4, 2014)",
 StyleDefinitions->"Default.nb"
 ]
@@ -255,11 +269,16 @@ Notebook[{
 Cell[558, 20, 1495, 45, 77, "Input"],
 Cell[2056, 67, 300, 8, 32, "Input"],
 Cell[CellGroupData[{
-Cell[2381, 79, 2470, 62, 99, "Input"],
-Cell[4854, 143, 4392, 92, 773, "Output"]
+Cell[2381, 79, 2601, 64, 99, "Input"],
+Cell[4985, 145, 4432, 93, 710, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9454, 243, 143, 3, 32, "Input"],
+Cell[9600, 248, 112, 1, 32, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
+
