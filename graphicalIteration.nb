@@ -1,0 +1,265 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9647,        256]
+NotebookOptionsPosition[      9262,        238]
+NotebookOutlinePosition[      9599,        253]
+CellTagsIndexPosition[      9556,        250]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"itinerary", "[", 
+   RowBox[{"func_", ",", "x0_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"a", ",", "hor", ",", "vert"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"hor", "[", 
+       RowBox[{"{", 
+        RowBox[{"x_", ",", "y_"}], "}"}], "]"}], ":=", 
+      RowBox[{"{", 
+       RowBox[{"y", ",", "y"}], "}"}]}], ";", 
+     RowBox[{
+      RowBox[{"vert", "[", 
+       RowBox[{"{", 
+        RowBox[{"x_", ",", "y_"}], "}"}], "]"}], ":=", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", 
+        RowBox[{"func", "[", "x", "]"}]}], "}"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a", "[", "1", "]"}], "=", 
+      RowBox[{"{", 
+       RowBox[{"x0", ",", "0"}], "}"}]}], ";", 
+     RowBox[{
+      RowBox[{"a", "[", "k_", "]"}], ":=", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"OddQ", "[", "k", "]"}], ",", 
+        RowBox[{"hor", "[", 
+         RowBox[{"a", "[", 
+          RowBox[{"k", "-", "1"}], "]"}], "]"}], ",", 
+        RowBox[{"vert", "[", 
+         RowBox[{"a", "[", 
+          RowBox[{"k", "-", "1"}], "]"}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"a", "[", "k", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "1", ",", 
+         RowBox[{"2", "*", "n"}]}], "}"}]}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.633107723714946*^9, 3.63310773559835*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"singpert", "[", 
+   RowBox[{"x_", ",", "c_", ",", "beta_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"x", "^", "2"}], "+", "c", "+", 
+   RowBox[{"beta", "/", 
+    RowBox[{"x", "^", "2"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.633107964170285*^9, 3.633107990029859*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"singpert", "[", 
+        RowBox[{"x", ",", "c", ",", ".001"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{
+        RowBox[{"-", "10"}], "*", "zoom"}], ",", 
+       RowBox[{"10", "*", "zoom"}]}], "}"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"Arrow", "[", 
+       RowBox[{"itinerary", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"singpert", "[", 
+            RowBox[{"#", ",", "c", ",", ".001"}], "]"}], ")"}], "&"}], ",", 
+         "1", ",", "n"}], "]"}], "]"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"zoom", "*", "10"}]}], ",", 
+     RowBox[{"ImagePadding", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"25", ",", "10"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"10", ",", "10"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", ".6", ",", "\"\<param\>\""}], "}"}], ",", 
+     RowBox[{"-", "1.3"}], ",", "1.3", ",", ".01", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "5", ",", "\"\<iterates\>\""}], "}"}], ",", "1", ",", 
+     "15", ",", "1", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"zoom", ",", "1", ",", "\"\<zoom\>\""}], "}"}], ",", ".5", ",", 
+     "4", ",", ".01", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "}"}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}], ",", 
+   RowBox[{"TrackedSymbols", "\[Rule]", "Manipulate"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.63310777457267*^9, 3.633107849931419*^9}, {
+  3.6331078811026697`*^9, 3.6331079331304703`*^9}, {3.6331079969495783`*^9, 
+  3.633108043865184*^9}, {3.63310807660212*^9, 3.633108077328754*^9}, {
+  3.633108207448886*^9, 3.6331082552762213`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 0.6, $CellContext`n$$ = 
+    5, $CellContext`zoom$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 0.6, "param"}, -1.3, 1.3, 0.01}, {{
+       Hold[$CellContext`n$$], 5, "iterates"}, 1, 15, 1}, {{
+       Hold[$CellContext`zoom$$], 1, "zoom"}, 0.5, 4, 0.01}}, 
+    Typeset`size$$ = {1073., {328., 334.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`c$20092$$ = 0, $CellContext`n$20093$$ = 
+    0, $CellContext`zoom$20094$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 0.6, $CellContext`n$$ = 
+        5, $CellContext`zoom$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`c$$, $CellContext`c$20092$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$20093$$, 0], 
+        Hold[$CellContext`zoom$$, $CellContext`zoom$20094$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{$CellContext`x, 
+         $CellContext`singpert[$CellContext`x, $CellContext`c$$, 
+          0.001]}, {$CellContext`x, (-10) $CellContext`zoom$$, 
+         10 $CellContext`zoom$$}, Epilog -> Arrow[
+          $CellContext`itinerary[$CellContext`singpert[#, $CellContext`c$$, 
+            0.001]& , 1, $CellContext`n$$]], 
+        PlotRange -> $CellContext`zoom$$ 10, 
+        ImagePadding -> {{25, 10}, {10, 10}}], 
+      "Specifications" :> {{{$CellContext`c$$, 0.6, "param"}, -1.3, 1.3, 0.01,
+          ImageSize -> Small, Appearance -> "Labeled", ControlPlacement -> 
+         Left}, {{$CellContext`n$$, 5, "iterates"}, 1, 15, 1, ImageSize -> 
+         Small, Appearance -> "Labeled", ControlPlacement -> 
+         Left}, {{$CellContext`zoom$$, 1, "zoom"}, 0.5, 4, 0.01, ImageSize -> 
+         Small, ControlPlacement -> Left}}, 
+      "Options" :> {TrackedSymbols -> Manipulate}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1321., {358., 365.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`singpert[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`beta, 
+          
+          Blank[]]] := $CellContext`x^2 + $CellContext`c + \
+$CellContext`beta/$CellContext`x^2, $CellContext`itinerary[
+         Pattern[$CellContext`func, 
+          Blank[]], 
+         Pattern[$CellContext`x0, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       Module[{$CellContext`a, $CellContext`hor, $CellContext`vert}, \
+$CellContext`hor[{
+             Pattern[$CellContext`x, 
+              Blank[]], 
+             Pattern[$CellContext`y, 
+              
+              Blank[]]}] := {$CellContext`y, $CellContext`y}; \
+$CellContext`vert[{
+             Pattern[$CellContext`x, 
+              Blank[]], 
+             Pattern[$CellContext`y, 
+              Blank[]]}] := {$CellContext`x, 
+            $CellContext`func[$CellContext`x]}; $CellContext`a[
+           1] = {$CellContext`x0, 0}; $CellContext`a[
+            Pattern[$CellContext`k, 
+             Blank[]]] := If[
+            OddQ[$CellContext`k], 
+            $CellContext`hor[
+             $CellContext`a[$CellContext`k - 1]], 
+            $CellContext`vert[
+             $CellContext`a[$CellContext`k - 1]]]; Table[
+           $CellContext`a[$CellContext`k], {$CellContext`k, 1, 
+            2 $CellContext`n}]], Attributes[PlotRange] = {ReadProtected}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.633108025886758*^9, 3.633108044895615*^9}, 
+   3.633108078473815*^9, {3.633108220126412*^9, 3.6331082561992292`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1855, 1056},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Linux x86 (64-bit) (December 4, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1495, 45, 77, "Input"],
+Cell[2056, 67, 300, 8, 32, "Input"],
+Cell[CellGroupData[{
+Cell[2381, 79, 2470, 62, 99, "Input"],
+Cell[4854, 143, 4392, 92, 773, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
