@@ -4,6 +4,11 @@
 #include <GL/glut.h>
 #include "util.h"
 
+/*
+	Original source:
+	http://nuclear.mutantstargoat.com/articles/sdr_fract/
+*/
+
 void draw(void);
 void key_handler(unsigned char key, int x, int y);
 void mouse_handler(int x, int y);

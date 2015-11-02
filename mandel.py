@@ -2,12 +2,13 @@ from numpy import *
 import scipy.ndimage
 import matplotlib.image
 from PIL import Image
-#import sage.all
-#from sage.plot.contour_plot import ContourPlot
-#from sage.doctest.util import Timer
 import time
 from pylab import *
 
+# Original, commented version of the numpy array reducing
+# implementation of the mandelbrot set generation
+# See original article here:
+# https://thesamovar.wordpress.com/2009/03/22/fast-fractals-with-python-and-numpy/
 def mandel(n, m, itermax, xmin, xmax, ymin, ymax):
 
 	start = time.time()
@@ -99,6 +100,7 @@ def mandel(n, m, itermax, xmin, xmax, ymin, ymax):
 
 	image = imshow(img.T, origin='lower left')
 	image.write_png('mandel.png', noscale=True)
+
 
 #Creates a 2 dimensional PARAMETER image of a singular perturbation of the complex quadratic map
 ##z = z**n1 + c2 + (beta)/(z.conjugate()**d)
@@ -208,7 +210,7 @@ def singPertPhase(n1,d,beta,c2,n, m, itermax, xmin, xmax, ymin, ymax,filename,co
 		image.write_png(filename+'.png', noscale=True)
 
 
-
+# Creates the burningShip fractal
 def burningShip(n, m, itermax, xmin, xmax, ymin, ymax,filename):
 
 	start = time.time()
@@ -290,20 +292,3 @@ def makeImage(imgType, xSize, ySize, xMin, xMax, yMin, yMax, itermax, n, d, beta
 
 if __name__ == "__main__":
 	makeImage("phase", 5000, 5000, -2, 2, -2, 2, 100, 2, 2, 0.0, -1.0, 0.0, "")
-
-
-#Would be nice to have a single function to call in which I can specify what image I want to create(param or phase), which parameter to vary over(might cover the first item, changing varying over c rather than z is the difference between phase and parameter pictures), and maybe even which function to use to iterate. 
-
-#Accomplish ^^ partially with some kind of GUI?
-
-#Best bet for ^^ would be to use web, would be really slow unless it ran python in the background(possible?)
-
-#Need a good image naming convention which automatically stores the parameters used and the type of picture made as the file name
-
-#Use image metadata for ^^?
-
-#Would be even better to not only make a filename with that info but also to push the new image to a latex document which could contain an acutal text description of the image as the figure caption.
-
-#Parameter space is like the original Mandelbrot set: we choose all the parameters but one, let that parameter vary, and then iterate a critical point to check if it stays bounded. For the z^2 + c case we only have one critical point: z=0. In the singular perturbations case we have a set of critical points which are the points along the circle given by: r = ((d/n1)*abs(beta))**(1/(n1+d))
-
-#Phase space is like the Julia sets: we choose all the parameters and then iterate different z values.
