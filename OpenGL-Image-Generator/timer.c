@@ -1,3 +1,8 @@
+/*
+	Original source:
+	http://nuclear.mutantstargoat.com/articles/sdr_fract/
+*/
+
 #if defined(__unix__) || defined(unix)
 #include <time.h>
 #include <sys/time.h>

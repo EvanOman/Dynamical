@@ -1,3 +1,8 @@
+/*
+	Original source:
+	http://nuclear.mutantstargoat.com/articles/sdr_fract/
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/gl.h>

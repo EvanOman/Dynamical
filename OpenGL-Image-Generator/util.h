@@ -1,3 +1,8 @@
+/*
+	Original source:
+	http://nuclear.mutantstargoat.com/articles/sdr_fract/
+*/
+
 #ifndef _UTIL_H_
 #define _UTIL_H_
 

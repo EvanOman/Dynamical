@@ -1,3 +1,7 @@
+//	Original source:
+//	http://nuclear.mutantstargoat.com/articles/sdr_fract/
+
+
 uniform sampler1D tex;
 uniform vec2 c;
 uniform int iter;
@@ -9,6 +13,9 @@ void main() {
 
 	int i;
 	for(i=0; i<iter; i++) {
+		// These lines are my main contribution, they implement the map 
+		// x^2 + c + .001/conj(x)^2
+
 		float x = c.x + z.x * z.x - z.y * z.y + (.001 * z.x * z.x)/((z.x * z.x + z.y *z.y) * (z.x * z.x + z.y *z.y)) - (.001 * z.y * z.y)/((z.x * z.x + z.y *z.y)*(z.x * z.x + z.y *z.y));
 		float y = 2*z.x*z.y + (.002* z.x * z.y)/((z.x * z.x + z.y *z.y) * (z.x * z.x + z.y *z.y)) + c.y;
 
