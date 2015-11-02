@@ -2,9 +2,9 @@ from numpy import *
 import scipy.ndimage
 import matplotlib.image
 from PIL import Image
-import sage.all
-from sage.plot.contour_plot import ContourPlot
-from sage.doctest.util import Timer
+#import sage.all
+#from sage.plot.contour_plot import ContourPlot
+#from sage.doctest.util import Timer
 import time
 from pylab import *
 
@@ -106,10 +106,10 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 	start = time.time()
 
 	#First we need to calculate the critical point that we are going to iterate on:
-	r = ((d/n1)*abs(beta))**(1/(n1+d))
+	r = pow((d/n1)*abs(beta), 1.0/(n1+d))
 
 	#The set of critical points is a circle with the radius given by above, for now we will take the right-most real value on this circle:
-	critPoint = r*complex(sage.all.cos(angle), sage.all.sin(angle))
+	critPoint = r*complex(cos(angle), sin(angle))
 	ix, iy = mgrid[0:n, 0:m]
 	
 	x = linspace(xmin, xmax, n)[ix]
@@ -137,7 +137,7 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 		#multiply(z, z, z)
 		#add(z, c, z)
 
-		z = z**n1 + c + (beta)/(z.conjugate()**d)
+		z = pow(z, n1) + c + (beta)/(pow(z.conjugate(), d))
 
 		# these are the points that have escaped
 		rem = abs(z)>2.0
@@ -151,7 +151,7 @@ def singPertParam(n1,d,beta, angle, n, m, itermax, xmin, xmax, ymin, ymax,filena
 		c = c[rem]
 	print 'Time taken:', time.time()-start
 
-	img[img==0] = 101
+	img[img==0] = itermax + 1
 	
 	image = imshow(img.T, origin='lower left')
 	if not colorMap == "":
@@ -198,15 +198,15 @@ def singPertPhase(n1,d,beta,c2,n, m, itermax, xmin, xmax, ymin, ymax,filename,co
 
 		z = z[rem]
 		ix, iy = ix[rem], iy[rem]
-		#c = c[rem]
 	print 'Time taken:', time.time()-start
 
-	img[img==0] = 101
-
+	img[img==0] = itermax + 1
+	
 	image = imshow(img.T, origin='lower left')
-	image.set_cmap(colorMap)
-	return image
-	image.write_png(filename+'.png', noscale=True)
+	if not colorMap == "":
+		image.set_cmap(colorMap)
+		image.write_png(filename+'.png', noscale=True)
+
 
 
 def burningShip(n, m, itermax, xmin, xmax, ymin, ymax,filename):
@@ -278,14 +278,18 @@ def makeImage(imgType, xSize, ySize, xMin, xMax, yMin, yMax, itermax, n, d, beta
 
 	#First we will make a consistent file name for the output image:
 	filename = imgType + "--n=" + str(n) + "--d=" + str(d) + "--beta=" + str(beta) + "--angle=" + str(angle)
+	print(filename)
 
 	#Now we call the appropriate function based on the user input
 	if imgType == "param":
-		singPertParam(n, d, beta, angle, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral")
+		singPertParam(n, d, beta, angle, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
 	elif imgType == "phase":
-		singPertPhase(n, d, beta, c, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral")
+		singPertPhase(n, d, beta, c, xSize, ySize, itermax, xMin, xMax, yMin, yMax, filename, "spectral_r")
 	else:
 		print("Not a valid image type, doing nothing")
+
+if __name__ == "__main__":
+	makeImage("phase", 5000, 5000, -2, 2, -2, 2, 100, 2, 2, 0.0, -1.0, 0.0, "")
 
 
 #Would be nice to have a single function to call in which I can specify what image I want to create(param or phase), which parameter to vary over(might cover the first item, changing varying over c rather than z is the difference between phase and parameter pictures), and maybe even which function to use to iterate. 
