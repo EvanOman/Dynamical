@@ -1,3 +1,5 @@
+# Creates an orbit diagram for the map x^2 + c + beta/x^2
+
 library(parallel)
 library(lattice)
 logistic.map <- function(c, x, N, M){
@@ -26,16 +28,11 @@ c <- sort(rep(my.c, 101))
 
 crit = .001^(.25)
 
-#png(filename="test.png",  units='in', width=12, height=12, res=500)
 bitmap("pertperdub.tiff", height = 10, width = 15, units = 'in', type="tifflzw", res=500)
 xyplot(Orbit ~ c, col = "black", pch = ".", cex = 1, ylim = c(-crit - .1,1), panel=function(...) {
     panel.abline(h=c(crit,0, -crit))
     panel.xyplot(...)
-}#, scales=list(
-     #x=list(
-     #    at=seq(-2, .25, by=0.1)
-#))
-)
+})
 dev.off()
 
 

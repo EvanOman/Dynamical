@@ -1,0 +1,160 @@
+\usepackage{amsmath,amssymb,epsfig,graphicx,multirow,tikz,enumerate,verbatim, setspace,multicol,pseudocode,marginnote, color,amsthm,indentfirst,subcaption, enumitem, import, caption, subcaption, cancel}
+\usepackage[margin=.75in]{geometry}
+\usepackage{algpseudocode}
+\usepackage[all]{xy}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[chapter,ruled]{algorithm}
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+%\floatstyle{plaintop}
+\restylefloat{algorithm}
+\usepackage{caption}
+\captionsetup[algorithm]{textfont={normalsize,md},labelfont=bf,singlelinecheck=off}
+\usetikzlibrary{positioning}
+\usepackage[symbol*]{footmisc}
+\DeclareGraphicsRule{.JPG}{eps}{*}{`jpeg2ps #1}
+
+%\setlength{\topmargin}{-.5in}
+%\setlength{\oddsidemargin}{-.0in}
+%\setlength{\evensidemargin}{-.2in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9.5in}
+\begin{document}
+
+
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+		\bfseries
+	#1\@addpunct{:}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+
+\newtheoremstyle{mydefs}{0pt}{3pt}{}{}{\itshape}{:}{.5em}{}
+\theoremstyle{mydefs}
+\newtheorem{definition}{\bf Definition}
+\newtheorem{proposition}{\bf Proposition}
+\newtheorem{theorem}{\bf Theorem}
+\newtheorem{lemma}{\bf Lemma}
+\newtheorem{corollary}{\bf Corollary}
+\newtheorem{conjecture}{\bf Conjecture}
+
+\newenvironment{mydef}[1]{\begin{definition} #1\itshape \par  %\parindent0em \leftskip4em \rightskip\leftskip 
+}{\end{definition}}
+
+\newenvironment{myprop}{\begin{proposition} $ \ $\itshape \par }{\end{proposition}}
+
+\newenvironment{myproof}{\begin{proof} $\ $   \par }{\end{proof}}
+
+\newenvironment{mylemma}{\begin{lemma} $\ $\itshape   \par }{\end{lemma}}
+
+\newenvironment{myth}{\begin{theorem} $\ $\itshape   \par }{\end{theorem}}
+
+\newenvironment{mycor}{\begin{corollary} $\ $\itshape   \par }{\end{corollary}}
+
+\newenvironment{myconj}{\begin{conjecture} $\ $\itshape   \par }{\end{conjecture}}
+
+%Sets the numbering by chapter rather than subsection
+\numberwithin{proposition}{chapter}
+\numberwithin{definition}{chapter}
+\numberwithin{theorem}{chapter}
+\numberwithin{lemma}{chapter}
+\numberwithin{corollary}{chapter}
+
+\newtheorem{innercustomthm}{\bf Proposition}
+\newenvironment{customthm}[1]
+{\renewcommand\theinnercustomthm{#1}\innercustomthm\itshape}
+{\endinnercustomthm}
+
+
+
+\newenvironment{myitemize}{\begin{singlespace*}\begin{itemize}}{\end{itemize}\end{singlespace*}}
+
+\newenvironment{mycenter}{\begin{singlespace*}\begin{center}}{\end{center}\end{singlespace*}}
+
+
+
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{notation}[1][Notation]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{problem}[1][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{homework}[1][Homework]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\alin}{\par  \parindent0em \leftskip4em \rightskip\leftskip \vspace{-.7cm} \singlespacing}
+
+\renewcommand{\thefootnote}{\fnsymbol{dagger}}
+
+
+%Some nice commands from my header file:
+\newcommand{\ds}{\displaystyle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\<}{\left\langle}
+\renewcommand{\>}{\right\rangle} %Better check at some point to make sure \> isn't anything important
+\renewcommand{\*}{\cdot} %Better check at some point to make sure \* isn't anything important
+\newcommand{\inv}{^{-1}}
+\newcommand{\prob}[2]{
+\begin{problem}
+\textbf{\auth  #1:} #2
+
+\end{problem}
+}
+\newcommand{\sol}[1]{\begin{solution}#1\end{solution}}
+\newcommand{\al}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\ov}[1]{\overline{#1}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\barr}{\left[\begin{array}}
+\newcommand{\ear}{\end{array}\right]}
+
+\newcommand{\lal}{\left\langle}
+\newcommand{\ral}{\right\rangle}
+
+\newcommand{\myfig}[3]{
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=#2\columnwidth]{#1}%
+	\caption{#3}
+	\label{}%
+	\end{figure}
+}
+
+\newcommand{\myfigg}[4]{
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=#2\columnwidth]{#1}%
+	\caption{#3}
+	\label{#4}%
+	\end{figure}
+}
+
+\newcommand{\alphen}[1]{
+\begin{enumerate}[label= (\alph*)]
+	#1
+\end{enumerate}
+}
+
+%CHANGE TO ADD INDENTATION
+\setlength{\parindent}{0in}

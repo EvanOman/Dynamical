@@ -1,0 +1,152 @@
+\section{An Infinity of Prezero Parameter Values}
+		We will begin this section with some preliminary propositions and lemmas which will be used to prove the key result given in Proposition \ref{mainprop}.
+		\begin{mylemma}\label{fppos}
+			The right hand fixed point $P_c$ is always greater than 0, when it exists.
+		\end{mylemma}
+
+		\begin{myproof}
+			It is clear that that parameter $c$ simply translates our curve up and down and do not change the overall shape. Thus, as $c$ decreases, is impossible for the right hand fixed point to ever be less than 0 because it is always on the right side of the singularity. Thus $P_c > 0$ $\forall c$.
+		\end{myproof}
+
+		\begin{mylemma}\label{fppos}
+			The first iterate of the critical point $f^1_c (C) < 0$ for $c \in (\pl, \pr)$.
+		\end{mylemma}
+
+		\begin{myproof}
+			Computing we see that $f^1_c (C) = (.001)^{\frac{1}{4}} + c + \frac{.001}{ (.001)^{\frac{1}{4}}} = 0.0632456 + c$. Then since this function has slope 1 with respect to $c$, $f_{-.0632456} (C) = 0$, and $\pr < -.0632456$, it is clear that $f^1_c (C) < 0$ for $c \in (\pl, \pr)$.
+		\end{myproof}
+
+		\begin{mylemma} \label{zero}
+		Suppose that $f^n_{z_n} (C)= 0$. Then $f^m_{z_n} (C) = \infty \ \forall m > n$. 
+		\end{mylemma}
+
+		\begin{myproof}
+		Suppose that $f^n_{z_n} (C) = 0$ and let $m > n$ such that $m - n = l > 0$. Then
+		\[
+		f^{m}_{z_n} (C) = f^l_{z_n} (f^n_{z_n} (C)) = f^l_{z_n} (0) = f^{l - 1}_{z_n}\left (0^2 + c + \frac{.001}{0^2}\right) = f^{l - 1}_{z_n} (\infty) = \infty
+		\]
+		Thus all higher iterates are mapped to $\infty$ as required.
+		\end{myproof}
+
+		\begin{mylemma} \label{zero2}
+		Suppose that $f^{n}_{c_1} (C) \leq 0$ and $f^{n}_{c_2} (C) = \infty$. Then for some $z_n,p_n,h_n \in \inte{c_1}{c_2}$, $f^n_{z_n} (C) = 0$, $f^n_{p_n} (C) = C$, $f^n_{h_n} (C) = P_c$.
+		\end{mylemma}
+
+		\begin{proof}
+			We know that $f$ is continuous with respect to $c$ and that $C>0$, $P_c>0$ for all $c$. Then by the I.V.T., $f_c^n (C)$ must cross $0$, $C$, and $P_c$ as it ranges to $\infty$ so there must be some $z_n,p_n,h_n \in \inte{c_1}{c_2}$ such that $f^n_{z_n} (C) = 0$, $f^n_{p_n} (C) = C$, $f^n_{h_n} (C) = P_c$.
+		\end{proof}
+
+		\begin{mylemma} \label{one}
+		Suppose there exists some prime period $n$ critical orbit at the parameter $p_n$ such that $f^n_{p_n} (C)= C$. Then $f^{l}_{p_n} (C) = f^{k}_{p_n} (C)$ where $k$ and $l$ are positive integers satisfying $k \equiv_n l$.
+		\end{mylemma}
+
+		\begin{myproof}
+			Suppose that the critical orbit at the parameter value $p_n$ is of prime period $n$ and let $l \in \N$ be given such that $l \equiv_n k$ which is to say that there exists $m \in \N^+$ such that $l - m \cdot n = k > 0$. Thus it will suffice to show that $f^{l}_{p_n} (C) = f^{k + m \cdot n}_{p_n} (C) = f^{k}_{p_n} (C)$, we will do so by induction on $m$:
+
+			\underline{Base Case:}
+
+			Let $m = 0$, then it is clear that $f_{p_n}^{k + 0\cdot n} (C) = f^k_{p_n} (C)$.
+
+			\underline{Induction Step:}
+
+			Suppose that $f^{k + m' \cdot n}_{p_n} (C) = f^{k}_{p_n} (C)$ for all $m' \leq m$. Then:
+			\begin{align}
+			f^{k + (m + 1)n}_{p_n} (C) 	&= f^{k + m \cdot n}_{p_n} (f^n_{p_n} (C))\\
+									&= f^{k + m \cdot n}_{p_n} (C)\\
+									&= f^k_{p_n} (C)
+			\end{align}
+			where line (4.2) is given by $f^n_{p_n} (C) = C$ (by assumption) and line (4.3) is implied by the induction hypothesis. Thus the $m^{th}$ case implies $ (m + 1)^{th}$ case so we can conclude that the statement holds for all $n$.
+		\end{myproof}
+
+		\begin{mylemma} \label{two}
+		Suppose that $f^n_{p_m} (C)= C$ for $p_m \in (\pl, \pr)$. Then there is a critical period $m = \frac{n}{a}$ orbit for some divisor $a$ of $n$ at $p_m$.
+		\end{mylemma}
+
+		\begin{myproof}
+			Since $f^n_{p_m} (C)= C$ we know that $C$ is mapped to itself after $n$ iterations. Thus $p_m$ may yield a periodic orbit of length $n$ or possibly some divisor of $n$ (since this may not be the lowest $i$ such that $f^i_{p_m} (C)= C$). Thus we say generally that there must be some divisor $a$ of $n$ such that there is a period $m = \frac{n}{a}$ critical orbit at $p_m$.
+		\end{myproof}
+
+		% \begin{mylemma} \label{three}
+		% Suppose that $f^{n_1}_{c_1} (C)= 0$ and $f^{n_2}_{c_2} (C) = 0$ such that $n_1 < n_2$ and $c_1,c_2 \in (\pl, \pr)$. Then $\exists c^* \in (\min\{c_1,c_2\}, \max\{c_1, c_2\})$ such that $f^{n_2}_{c^*} (C) = C$.
+		% \end{mylemma}
+
+		% \begin{proof}
+		% 	From Lemma \ref{zero} we know that $f^{n_2}_{c_1} (C) = \infty$. Thus $f^{n_2}_c (C)$ varies from 0 to $\infty$ on the interval $ (\min\{c_1,c_2\}, \max\{c_1, c_2\})$ so it must pass through the point $C \in (0, \infty)$ on the interval $ (\min\{c_1,c_2\}, \max\{c_1, c_2\})$ at least once. 
+		% \end{proof}
+
+		% \begin{myconj} \label{four}
+		% Suppose that $f^{n}_{c_1} (C)= 0$ and $f^{n}_{c_2} (C) = 0$ for $c_1,c_2 \in (\pl, \pr)$ such that $f^n_{c} (C) \neq \infty$ for $c  \in (\min\{c_1,c_2\}, \max\{c_1, c_2\}) $. Then for some $m >n$, $c_3 \in \inte{c_1}{c_2}$, $f^m_{c_3} (C) =C$.
+		% \end{myconj}
+
+		\begin{mylemma} \label{golden}
+			Suppose that there exists some coding sequences $\alpha, \beta$ and some parameter values $\zo, \zt \in (\pl, \pr)$ such that $f^{n}_{\zo} (C)= 0$ and $f^{n}_{\zt} (C) = 0$ where $f^n_{c} (C) \neq \infty$ and $f^n_{c} (C) \neq 0$ for $c  \in \inte{\zo}{\zt}$ and $\alpha_i \neq \beta_i$ for at least one $i$. Then for some $m \leq n$, there exists $p_m\in \inte{\zo}{\zt}$ such that $f^m_{p_m} (C) = C$.
+		\end{mylemma}
+
+		\begin{myproof}
+			Let $\zo, \zt$ be two parameter values which induce $n^{th}$ order prezero points such that $\alpha_i \neq \beta_i$ for at least one $i$. Since $c \geq \pl$, we know that no $\alpha_i = l$ or $\beta_i = l$ because no critical iterate can cross over to the $l$ interval before $\pl$. Additionally, no $\alpha_i = R$ or $\beta_i = R$ because otherwise all subsequent iterates would have the coding $R$. Thus for any $i \leq n -1$, $\alpha_i \in \{r, L, F\}$ and $\beta_i \in \{r, L, F\}$.
+
+			Now suppose some $m^{th}$ code is different between the two sequences such that $\alpha_m \neq \beta_m$ which is to say that the $m^{th}$ iterate changed its coding on the interval $\inte{\zo}{\zt}$ for $m \leq n-1$. By continuity, we could not have the transitions $r \leftrightarrow F$ or $r \leftrightarrow L$ because these would cause some code to be 0 for some parameter in $\inte{\zo}{\zt}$, and since $m \leq n-1$, this would force $f^n_c(C) = \infty$, violating our assumption that $f_c^n(C) \neq \infty$ on the interval $\inte{\zo}{\zt}$.
+
+			Therefore the only possible coding transitions on the interval $\inte{\zo}{\zt}$ are $L \ra F$ or $F \ra L$. In either case, Table \ref{trans} gives us that the $m^{th}$ iterate must have transitioned continuously from one interval to the other, forcing the existence of some $p_m \in \inte{\zo}{\zt}$ where $f^m_{p_m} (C) = C$, as required.
+		\end{myproof}
+
+		Thus with these lemmas in hand, we can prove this section's main result:
+
+		\begin{myprop}\label{mainprop}
+
+			Suppose we have two distinct parameter values $z_{n_1}^{C\alpha0}, z_{n_2}^{C\beta0} \in (\pl, \pr)$ where $\alpha$ and $\beta$ are coding sequences such that $\alpha_i \neq \beta_i$ for at least one $i$. Then there must be at least one other prezero parameter value $z_{n_3}^{C\gamma0}$ on the interval $\inte{z_{n_1}^{C\alpha0}}{z_{n_2}^{C\beta0}}$ such that $\alpha_i \neq \gamma_i$ and $\beta_j \neq \gamma_j$ for at least one $i$ and one $j$.
+
+			%Suppose we have two distinct parameter values $z_{n_1}^{C\alpha0}, z_{n_2}^{C\beta0} \in (\pl, \pr)$ where $\alpha$ and $\beta$ are coding sequences such that $\alpha_i \neq \beta_i$ for at least one $i$. Then there must be at least one other prezero parameter value $z_{n_3}^{C\gamma0}$ on the interval $\inte{z_{n_1}^{C\alpha0}}{z_{n_2}^{C\beta0}}$ such that each critical orbit coding is different at each point.
+		\end{myprop}
+
+		\begin{myproof}
+		Consider the following 2 cases:
+
+		\begin{enumerate}
+		\item \underline{$n_1 \neq n_2$}
+
+		Assume $n_1 \neq n_2$ and suppose without loss of generality that $n_1 < n_2$. Then by Lemma \ref{zero} we know that $f^{n_2}_{\zoo} (C) = \infty$. Thus we are guaranteed by Lemma \ref{zero2} that there exists some $p_{n_2} \in \inte{\zoo}{\ztt}$ where $f^{n_2}_{p_{n_2}} (C) = C$. Then considering the $ (n_2+1)^{th}$ iterate we see that:
+		
+		\[
+		f^{n_2 + 1}_{p_{n_2}} (C) = f_{p_{n_2}} (f^{n_2}_{p_{n_2}} (C)) = f_{p_{n_2}} (C) < 0 \text{ and } f^{n_2 + 1}_{\zoo} (C) = \infty = f^{n_2 + 1}_{\ztt} (C)
+		\]
+		Thus $f^{n_2 + 1 }_{c} (C)$ must have had a zero in each of the intervals $\inte{\zoo}{p_{n_2}}$ and $\inte{p_{n_2}}{\ztt}$. Therefore we have exhibited two parameter values which yield prezero critical orbits on the interval $\inte{\zoo}{\ztt}$. Additionally, since $n_2 + 1 > n_2 > n_1$, choosing either of these parameter values would give a new prezero parameter value with a different coding than either $\zoo$ or $\ztt$ (because they have different lengths) as required. We expect these parameter values themselves to have different codings as well, although this is not necessary for the proof.
+
+		\item \underline{$n_1 = n_2$}
+
+		Now suppose that $n_1 = n_2 = n$. We will consider each the following subcases:
+
+		\begin{enumerate}
+
+		\item \underline{$f^n_c(C) \neq \infty$ for any $c \in \inte{\zo}{\zt}$}
+
+			Suppose that $f^{n}_{\zo} (C)= 0$ and $f^{n}_{\zt} (C) = 0$ such that $f^n_{c} (C) \neq \infty$ for $c  \in \inte{\zo}{\zt}$. Then by Lemma \ref{golden} we know that there must exist some $p_m \in \inte{\zo}{\zt}$ such that $f^m_{p_m} (C) = C$ for some $m < n$. 
+
+			Select any $l$ such that $l = n + (m - n)_m + 1$ and $l > n$. Since $l \equiv_m 1$, Lemma \ref{one} tells us that $f^l_{p_m} (C) = f^1_{p_m} (C)$ which forces $f^l_{p_m} (C) < 0$. Then since $f^n_{\zo} (C) = 0 = f^n_{\zt} (C)$, Lemma \ref{zero} gives us that $f^l_{\zo} (C) = \infty = f^l_{\zt} (C)$. 
+
+			Therefore $f^l_c (C)$ must have a prezero orbit in $\inte{\zo}{p_m}$ and $\inte{p_m}{\zt}$,  giving us two prezero critical orbits. Additionally, since $n + 1 > n$, choosing either of these parameter values would give a new prezero parameter value with a different coding than either $\zo$ or $\zt$ (because they have different lengths) as required. We expect these parameter values themselves to have different codings as well.
+
+		\item \underline{$f^n_c(C) = \infty$ for some $c \in \inte{\zo}{\zt}$}
+
+			Suppose that $f^{n}_{\zo} (C)= 0$ and $f^{n}_{\zt} (C) = 0$ such that $f^n_{z_m} (C) = \infty$ for some $z_m \in \inte{\zo}{\zt}$ and $m < n$. Then since $f^n_{z_m} (C) =  \infty$, we know that $f^n_{c} (C)$ must cross the positive critical point at least once (since $C \in (0, \infty)$), call the parameter of this intersection $p_n$. Thus we have $f^n_{p_n} (C) = C$ which implies that $f^{n + 1}_{p_n} (C) = f^{1}_{p_n} (C) < 0$. Thus since $f^{n + 1}_{p_n} (C) < 0 $ and $f^{n + 1}_{\zo} (C) = \infty = f^{n + 1}_{\zt}$, $f^{n+1}_c (C)$ must go through 0 at least twice, giving us two pre-zero critical orbits. Additionally, since $n + 1 > n$, choosing either of these parameter values would give a new prezero parameter value with a different coding than either $\zo$ or $\zt$ (because they have different lengths) as required. We expect these parameter values themselves to have different codings as well.
+
+			\end{enumerate}
+
+		\end{enumerate}
+		\end{myproof}
+
+		Note that while the proof above is for prezero points, it can easily be shown that between any two prezero parameter values, of a different coding, there are superattracting and prefixed parameter values as well.
+
+		% Thus any two prezero points with distinct codings have at least two higher iterate prezero points between them (also with distinct codings), leading to a significant corollary.
+
+		% \begin{mycor} \label{maincor}
+		% 	There are an infinity of prezero critical orbits on the interval $ (\pl, \pr)$.
+		% \end{mycor}
+
+		% \begin{myproof}
+		% 	??
+		% \end{myproof}
+
+		% **Add discussion of implications of the above corollary
+
+		% **Add comparison back to $x^2 + c$?

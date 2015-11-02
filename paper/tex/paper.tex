@@ -1,0 +1,112 @@
+\documentclass[12pt]{report}
+
+\usepackage[margin=.5in]{geometry}
+\usepackage{import, amsmath,amssymb}
+
+\import{./}{headerStuffs.tex}
+
+\newenvironment{myproof}[1][\proofname]{%
+  \begin{proof}[#1]$ $\par\nobreak\ignorespaces
+}{%
+  \end{proof}
+}
+
+\newcommand{\Fcb}{F_{c, \beta}}
+
+
+%\numberwithin{proposition}{chapter}
+%\numberwithin{definition}{chapter}
+%\numberwithin{theorem}{chapter}
+
+\begin{document}
+
+\begin{center}
+	Paper 
+\end{center}
+
+\begin{definition}{\textbf{: Homoclinic Point (Devaney)}}
+	Let $f (p) = p$ and $f' (p) > 1$. A point $q$ is called homoclinic to $p$ if $q \in W^u_{loc} (p)$ and there exists $n> 0$ such that $f^n (q) = p$. The point $q$ is heteroclinic if $q \in W^u_{loc} (p)$ and there exists $n > 0$ such that $f^n (q)$ lies on a different periodic orbit
+\end{definition}
+
+\begin{definition}
+	A homoclinic orbit is called nondegenerate if $f' (x)\neq 0$ for all points $x$ on the orbit. Otherwise, the orbit is degenerate.
+\end{definition}
+
+\begin{theorem}
+Suppose $q$ lies along a nondegenerate homoclinic orbit to a fixed point $p$. Then  for each neighborhood $U$ of $p$, there is an integer $n>0$ such that $f^n$ has a hyperbolic invariant subset in $U$ on which $f^n$ is topologically conjugate to the shift automorphism.
+\end{theorem}
+
+\begin{theorem}
+Suppose $f$ admits a nondegenerate homoclinic point to $p$. Then, in every neighborhood of $p$, there are infinitely many distinct periodic point.
+\end{theorem}
+
+Quick conventions:
+\begin{itemize}
+	\item $C$: the right critical point of $\Fcb$ (the orbit of the left critical point, call it $C_L$, varies from $C$ by only one iterate)
+	\item $F_r$: the right fixed point of $\Fcb$ (if it exists)
+	\item $\Fcb^{-i} (x)$ represents the $i^{th}$ preimage of $x$.
+\end{itemize}
+
+This paper will explore some of the dynamics of the system $Fcb (x) = x^2 + c + \frac{\beta}{x^2}$.
+
+\begin{myproof}[Some iterate entering ``trap door'' is the only cause of critical orbit escape]
+Self evident?
+
+Preimage of $R$ is the top part of the graph, which only includes the left and right branch of the singularity and the high enough parts of $L$. If I could prove that $C$ cannot get into that part of $L$ then I am set.
+\end{myproof}
+
+\begin{myproof}[``Trap Door'' escapes are framed by fre-fixed points at $F_r$]
+	Depending on the sign of $\ds\frac{\partial \Fcb^n (C)}{\partial c}$, the point $\Fcb^n (C)$ will either march up and then down the singularity, or down then up. Either way, then end and start of these intervals is marked by the right fixed point $F_r$. Thus $\Fcb^n (C)$ must be prefixed at $F_r$ for some value $\delta$ to either side of the point where $\Fcb^n (C) = 0$
+\end{myproof}
+
+\begin{myproof}[Infinite Pre-Zero Points Following a Pre-Fixed Point]
+Consider the orbit of 0 under the inverse map $F_{c, \beta}\inv$ where $\beta= .001$ and $c$ is the  parameter value some small $\varepsilon$ less than the point where the critical orbit coding is $Cr\bar{F_r}$ (experimentally this occurs at $c\approx -.0924$). Since $Fp_r$ is repelling in forward time (clearly the slope there is greater than 1), it must be attracting in backward time. Thus $\ds\lim_{n \ra \infty} F_{c,\beta}^{-n} (0) = F_r$. Then the orbit of $0$ under the inverse map would be the sequence of monotonically increasing points $\{\Fcb\inv (0), \Fcb^{-2} (0), \Fcb^{-2} (0) \ldots\}$ which limits to $F_r$. In forward time, this sequence of points is precisely those points which are pre-0 such that the $i^{th}$ iterate of $\Fcb^{-i} (0)$ is exactly 0.
+
+Then we see that as $c$ decreases, $\Fcb^2 (C)$ decreases and moves away from $Fp_r$, going down the curve until we hit our first period 2.
+
+\begin{itemize}
+\item TODO: argument that it does so smoothly
+\item TODO: argument that even though the location of our pre-zero points change for each c value, $\Fcb^2$ must still go through each pre-zero point
+\item Would an argument saying that $\Fcb\inv$ and $\Fcb^2$ are continuous with respect to $c$ and that $\Fcb^2$ changes faster than $\Fcb\inv$ suffice?
+\end{itemize}
+
+
+Therefore from $c = -.0924$ to $c = -.1218$, $\Fcb^2 (C)$ takes on $\Fcb^{-i} (0)$ for all $i \geq 2$, meaning that the critical orbit has an infinite number of distinct escape windows on this interval.
+\end{myproof}
+
+\begin{center}
+FROM DEVANEY'S BOOK, ABOUT LOGISTIC MAP
+\end{center}
+
+
+\begin{proposition}
+	Let $F_{\mu} (x) = \mu (1-x)$.
+	\alphen{
+	\item $\ds \frac{d}{d\mu} \left (\frac{1}{2}\right) < 0$ if $\mu > \frac{8}{3}$
+	\item $\ds\left (F^2_{\mu}\right)'' \left (\frac{1}{2}\right) = \mu^2 (\mu - 2)$.
+	}
+\end{proposition}
+
+\begin{proof}
+	PROOF
+\end{proof}
+
+\begin{proposition}
+	\begin{enumerate}
+	\item For each $j \geq 0$, $F^{j+2}_{\mu}$ has a unique critical point $c_j (\mu)$ in $I_j$, and $F^{j+2}$ has a minimum at this point. Also $F^{j+2}_{\mu} (c_j (\mu))=F^2_{\mu}\left (\frac{1}{2}\right)$.
+
+	\item $F^{j+2}_{\mu} (x_j) = F^{j+2}_{\mu} (\hat{x_j}) = F^2_{\mu} (x_0)$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	For part 1, we note that on $I_j$, we have $F^{j+2}_{\mu} = F^2_{\mu}\circ F^j_{\mu}$. Hence 
+	\[
+		\left (F^{j+2}_{\mu}\right)' (x) = \left (F^2_{\mu}\right)'\left (F^j_{\mu} (x)\right)\cdot \left (F^j_{\mu}\right)' (x)
+	\]
+	Since $F^j_{\mu}: I_j \ra I_0$ is a diffeomorphism, $ (F_{\mu}^j)' (x) > 0$ for $x \in I_j$. Thus the only critical points occur where $ (F^2_{\mu})'$ vanishes, namely at $F^j_{\mu} = \frac{1}{2}$. The result now follows immediately. Part 2 follows from the fact that $F_{\mu} (x_0) = F_{\mu} (\hat{x_0})$ by symmetry.
+\end{proof}
+
+
+
+\end{document}

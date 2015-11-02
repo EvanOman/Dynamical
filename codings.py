@@ -1,5 +1,9 @@
 import sys
 
+"""
+Makes orbit codings for the map x^n+c+beta/(x^d) where beta = .001
+"""
+
 def singpert(x, n, d, c, beta):
 	return x**n + c + beta/(x**d)
 

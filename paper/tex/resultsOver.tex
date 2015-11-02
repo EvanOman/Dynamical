@@ -1,0 +1,91 @@
+\chapter{Overview of One Dimensional Results}
+
+	In this chapter we will give an overview of results pertaining to the one-dimensional family $f_{c, \beta} (x) = x^2 + c + \frac{\beta}{x^2}$ where $x, c, \beta \in \R$. Furthermore, we will fix the parameter $\beta$ at $.001$ and consider the structure of the resulting system $f_{c} (x) = x^2 + c + \frac{.001}{x^2}$ as the parameter $c$ is varied. Comparisons will be drawn against the standard quadratic map $Q_c (x) = x^2+c$ and the results which are proven in the next chapter will be introduced and discussed.
+
+
+	\input{./tex/pre}
+
+	\input{./tex/understood}
+
+	\section{Orbit Codings}
+
+	Before introducing our results, we will discuss one final analytical technique which is critical to understanding the results presented in the following sections. It is common in the study of one-dimensional dynamical systems to partition the the domain/codomain into a series of intervals. Once such a partition has been established, we can then encode orbits with a sequence of symbols determined by which partition each iterate maps to. The reason why this is useful is because we can look at the coding of a some orbit, say the critical orbit, and keep track of changes in that coding as the parameter set changes. Typically when such a coding change occurs, the system has undergone some kind of shift as we moved from one parameter value to another. Therefore, orbit codings provide a simple numerical mechanism for detecting behavioral transitions. For parameter values within our interval of interest, we will impose the following partitioning for our system:
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=.75\textwidth]{./img/codings.pdf}
+		\caption{A partitioning of the domain of the map $f_c (c) = x^2 + c + \frac{.001}{x^2}$}
+		\label{coding}
+	\end{figure}
+
+	\begin{itemize}
+		\item Let $C$ be the positive critical point such that $C = + \beta^{\frac{1}{4}} = .001^{.25} \approx 0.177827$. $-C$ will simply denote the negative critical point.
+		\item Let $P_c$ be the right most fixed point (when it exists) which is given by solving for the maximum $c$ value which satisfies $f_c (x) = x$. The curve in $c$ space produced by the solution of this system is shown in Figure \ref{pcplot}.
+		\item $R$: Corresponds to $\{x | x\in (P_c, \infty)\}$. Over this interval, $f_c (x)$ is always increasing with respect to $x$ for all $c$. Additionally, once any iterate lands in this interval escape is inevitable.
+
+		\item $F$: Corresponds to $\{x | x\in (C, P_c)\}$. Over this interval, $f_c (x)$ is increasing with respect to $x$ for all $c$.
+
+		\item $L$: Corresponds to $\{x | x\in (0, C)\}$. Over this interval, $f_c (x)$ is decreasing with respect to $x$ for all $c$.
+
+		\item $r$: Corresponds to $\{x | x\in (-C, 0)\}$. Over this interval, $f_c (x)$ is increasing with respect to $x$ for all $c$.
+
+		\item $l$: Corresponds to $\{x | x\in (-\infty, -C)\}$. Over this interval, $f_c (x)$ is decreasing with respect to $x$ for all $c$.
+
+		\item In addition to the above intervals, we will also define codes corresponding to boundary points: 0, $C$, $-C$, $P_c$, and $\infty$ where $C$ and $-C$ are the critical points of our system and $P_c$ is the rightmost fixed point.
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=.75\textwidth]{./img/pc}
+		\caption{Plot of all the fixed points with respect to $c$, $P_c$ is the max such value for any $c$ (shown in a dashed line)}
+		\label{pcplot}
+	\end{figure}
+
+	Note that the intervals $l$, $r$, and $L$ are invariant under changes in our parameter $c$ (because the critical points are not a function of $c$) while $F$ and $R$ are dependent on the value of $P_c$ which depends on $c$. See Figure \ref{coding} for a graphical representation of these intervals. Throughout the remainder of this paper, we will make heavy use of critical orbit codings of the form $C\alpha_1\alpha_2\cdots\alpha_n$. As mentioned above, keeping track of such codings is useful because they can easily detect when some $i^{th}$ iterate moves from one interval to another. This is significant not only because it could mark the difference between bounded and unbounded orbits, but because between any two distinct codings, there are the significant values $-C$, $0$, $C$, and $P_c$. Thus, since our map varies continuously with respect to both $c$ and $x$ (see Proposition \ref{contin}), if $\alpha_i$ changes from one coding at the value $c_1$ to another coding at $c_2$, we are guaranteed by the Intermediate Value Theorem that the $i^{th}$ iterate must have taken on an intermediate value according to Table \ref{trans} (note that all transitions are transitive such that a transition $l \ra L$ implies $l \ra r$ and $r \ra L$).
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|}
+		\hline Coding Transition & Guaranteed Intermediate Value\\
+		\hline $l \leftrightarrow r$ & $-C$\\
+		\hline $r \leftrightarrow L$ & $0$\\
+		\hline $L \leftrightarrow F$ & $C$\\
+		\hline $F \leftrightarrow R$ & $P_c$\\
+		\hline
+		\end{tabular}
+		\caption{Summary of coding transitions and their implications}
+		\label{trans}
+	\end{table}
+
+	\section{Parameter Interval of Interest and Naming Conventions}
+
+	The goal of subsequent sections is to introduce the results concerning the behavior of the critical orbits of $f_c$ within the parameter interval $ (-.25, -.062456)$ as discussed in Section \ref{res:understood}. Before doing so, we will briefly introduce some naming conventions which will aid our description of the behavior in this interval:
+
+	In addition to the codes defined in Section 3.3, we will adopt the following naming conventions for simplicity:
+	\begin{itemize}
+		\item Let $\inte{a}{b} = (\min\{a,b\}, \max\{a,b\})$ such that $\inte{a}{b}$ is simply the interval between $a$ and $b$ where $a > b$ or $b > a$.
+		\item Let $h_n$, $p_n$, $z_n$ be parameter values such that $f^n_{h_n} (C) = P_c$ (corresponding to a homoclinic parameter value), $f^n_{p_n} (C) = C$ (corresponding to a superattracting periodic orbit parameter value), and $f^n_{z_n} (C) = 0$ (corresponding to a prezero parameter value, see Section 4.3). Note that the solutions to these equations are typically not unique; thus we will refer to a specific parameter value with the coding of the critical orbit at that point by placing the coding at that parameter value in the superscript. For example, in Figure \ref{itright} we see graphical iteration of the critical point at the parameter value $\pr$ where we refer to the specific $h_2$ by listing the coding $CrP_c$.
+		\item Let $s_n$ be a parameter value where the $n^{th}$ iterate goes through a saddle node bifurcation. We use an $l$ or an $r$ in the superscript to differentiate between the left lobe saddle and the right lobe saddle respectively. $s_1^l$ and $s_1^l$ are labeled in Figure \ref{pcplot}.
+	\end{itemize}
+	%This behavior is interesting because it forces the existence of some parameter neighborhood where all higher iterates of the critical orbit escape. As a consequence of Theorem \ref{sch}, if the critical point escapes, there can be no attracting periodic points at that parameter value.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+			\includegraphics[width=\textwidth]{./img/c1}
+			\caption{Graphical Iteration of $C$ at the parameter value $\pr$}
+			\label{itright}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.5\textwidth}
+			\includegraphics[width=\textwidth]{./img/c2}
+			\caption{Graphical Iteration of $C$ at the parameter value $\pl$}
+			\label{itleft}%
+	\end{subfigure}
+	\caption{Graphical Iteration at the key parameter values $\pr$ and $\pl$}\label{fig:cgi}
+\end{figure}
+
+A study of the orbit diagrams from the previous sections reveals that there are several ``key'' parameter values on the interval $ (-.241073, -.092395)$ which can be used to frame our discussion of the critical point behavior. The first, which we call $\pr$, occurs approximately at $-.092395$ and represents the first $c$-value for which the critical orbit stays bounded as $c$ is decreased from $z_1^{C0}$. See Figure \ref{itright} for graphical iteration at this parameter value. Additionally, this also happens to be the parameter value where the critical orbit is prefixed at the right hand fixed point, as the notation suggests. We will also call the right hand fixed point at this parameter value the ``primary homoclinic point'' for reasons which we will discuss in full in Section \ref{hcs}. The second significant parameter value is $\pl \approx -.241073$ and represents the point where the negative critical point $-C$ is fixed. See Figure \ref{itleft} for graphical iteration at this parameter value. Note that both of these parameter values yield critical orbits which are fixed after two and one iterates respectively. Thus for any positive integer $n$, $f^n_{\pl} (C) = -C$ and for $n > 1$, $f^n_{\pr} (C) = P_c$. This means that higher iterates must be constrained at these points, providing a structure will be exploited in the arguments to follow. Finally, we introduce the point $s_1^l \approx -.203$ which represents the point where the left lobe becomes tangent to the reference line and undergoes a saddle node bifurcation (as the notation suggests). This point is significant because the system seems to return to a behavior more like the original map $Q_c (x)$ for $c < s_1^l$ (as discussed in Section 3.2).
+
+
+	\input{./tex/accumOver}
+
+	\input{./tex/pre0over}

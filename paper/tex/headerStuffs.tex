@@ -1,0 +1,72 @@
+\usepackage{amsfonts}
+\usepackage{xypic}
+\usepackage{amssymb, enumitem}
+\usepackage{url}
+\usepackage[symbol*]{footmisc}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{tikz, float,bm}
+\setlength{\parindent}{0in}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\<}{\left\langle}
+\renewcommand{\>}{\right\rangle} %Better check at some point to make sure \> isn't anything important
+\renewcommand{\*}{\cdot} %Better check at some point to make sure \* isn't anything important
+\newcommand{\inv}{^{-1}}
+\newcommand{\prob}[2]{
+\begin{problem}
+\textbf{\auth  #1:} #2
+
+\end{problem}
+}
+\newcommand{\sol}[1]{\begin{solution}#1\end{solution}}
+\newcommand{\al}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\ov}[1]{\overline{#1}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\barr}{\left[\begin{array}}
+
+\newcommand{\lal}{\left\langle}
+\newcommand{\ral}{\right\rangle}
+
+\newcommand{\myfig}[3]{
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=#2\columnwidth]{#1}%
+	\caption{#3}
+	\label{}%
+	\end{figure}
+}
+
+\newcommand{\alphen}[1]{
+\begin{enumerate}[label= (\alph*)]
+	#1
+\end{enumerate}
+}
+	
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+			
